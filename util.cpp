@@ -35,7 +35,7 @@ std::set<std::string> parseStringToWords(string rawWords)
        }
     }
     if (!rawWords.empty()){
-      keywords.insert(convToLower(word));
+      keywords.insert(convToLower(rawWords));
     }
 
   return keywords;

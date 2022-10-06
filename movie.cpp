@@ -20,12 +20,13 @@ set<string> Movie::keywords() const{
 string Movie::displayString() const{
   string name_ = getName();
   string price_ = to_string(getPrice());
+  price_ = price_.substr(0, price_.find(".")+3);
   string qty_ = to_string(getQty());
   string mString;
 
   mString += name_ + "\n";
   mString += "Rating: " + rating_ + " Genre: " + genre_ + "\n";
-  mString += price_ + " " + qty_ + " left." + "\n"; 
+  mString += "$" + price_ + " " + qty_ + " left." + "\n"; 
   return mString;
 }
 

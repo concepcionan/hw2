@@ -20,12 +20,13 @@ set<string> Clothing::keywords() const{
 string Clothing::displayString() const{
   string name_ = getName();
   string price_ = to_string(getPrice());
+  price_ = price_.substr(0, price_.find(".")+3);
   string qty_ = to_string(getQty());
   string cString;
 
   cString += name_ + "\n";
   cString += "Brand: " + brand_ + " Size: " + size_ + "\n";
-  cString += price_ + " " + qty_ + " left." + "\n"; 
+  cString += "$" + price_ + " " + qty_ + " left." + "\n"; 
   return cString;
 }
 

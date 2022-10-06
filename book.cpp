@@ -1,5 +1,6 @@
 #include "book.h"
 #include "util.h"
+#include <cmath>
 
 using namespace std;
 
@@ -16,16 +17,16 @@ set<string> Book::keywords() const{
   bKeywords_.insert(author_);
   return bKeywords_;
 }
-
 string Book::displayString() const{
   string name_ = getName();
   string price_ = to_string(getPrice());
+  price_ = price_.substr(0, price_.find(".")+3); 
   string qty_ = to_string(getQty());
   string bString;
 
   bString += name_ + "\n";
   bString += "Author: " + author_ + " ISBN: " + isbn_ + "\n";
-  bString += price_ + " " + qty_ + " left." + "\n"; 
+  bString += "$" + price_ + " " + qty_ + " left." + "\n"; 
   return bString;
 }
 

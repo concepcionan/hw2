@@ -26,7 +26,7 @@ std::set<std::string> parseStringToWords(string rawWords)
           word = rawWords.substr(0, rawWords.find(c));
           rawWords.erase(0, rawWords.find(c) + 1);
           if (word.size() > 1){
-               keywords.insert(word);
+              keywords.insert(convToLower(word));
           }
           itr = 0;
        }
@@ -35,8 +35,8 @@ std::set<std::string> parseStringToWords(string rawWords)
        }
     }
     if (!rawWords.empty()){
-         keywords.insert(rawWords);
-       }
+      keywords.insert(convToLower(word));
+    }
 
   return keywords;
 }
@@ -107,3 +107,25 @@ std::string &trim(std::string &s) {
 //         cout << *itr << endl;
 //     }
 // }
+// //Expected Result: 
+// //
+// // Words 1 are... 
+// // --------
+// // aaa
+// // bbb
+// // ccc
+// // Words 2 are... 
+// // --------
+// // ccc
+// // ddd
+// // eee
+// // The Unified Set is... 
+// // --------
+// // aaa
+// // bbb
+// // ccc
+// // ddd
+// // eee
+// // The Intersected Set is... 
+// // --------
+// // ccc

@@ -24,8 +24,8 @@ string Clothing::displayString() const{
   string cString;
 
   cString += name_ + "\n";
-  cString += "Author: " + brand_ + "ISBN: " + size_ + "\n";
-  cString += price_ + qty_ + " left." + "\n"; 
+  cString += "Brand: " + brand_ + " Size: " + size_ + "\n";
+  cString += price_ + " " + qty_ + " left." + "\n"; 
   return cString;
 }
 

@@ -24,8 +24,8 @@ string Book::displayString() const{
   string bString;
 
   bString += name_ + "\n";
-  bString += "Author: " + author_ + "ISBN: " + isbn_ + "\n";
-  bString += price_ + qty_ + " left." + "\n"; 
+  bString += "Author: " + author_ + " ISBN: " + isbn_ + "\n";
+  bString += price_ + " " + qty_ + " left." + "\n"; 
   return bString;
 }
 

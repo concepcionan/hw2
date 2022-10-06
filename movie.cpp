@@ -24,8 +24,8 @@ string Movie::displayString() const{
   string mString;
 
   mString += name_ + "\n";
-  mString += "Author: " + rating_ + "ISBN: " + genre_ + "\n";
-  mString += price_ + qty_ + " left." + "\n"; 
+  mString += "Rating: " + rating_ + " Genre: " + genre_ + "\n";
+  mString += price_ + " " + qty_ + " left." + "\n"; 
   return mString;
 }
 

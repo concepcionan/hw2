@@ -21,6 +21,7 @@ struct ProdNameSorter {
     }
 };
 void displayProducts(vector<Product*>& hits);
+void displayCart(vector<Product*>& cart);
 
 int main(int argc, char* argv[])
 {
@@ -64,6 +65,8 @@ int main(int argc, char* argv[])
     cout << "====================================" << endl;
 
     vector<Product*> hits;
+    map<string, vector<Product*>> carts;
+
     bool done = false;
     while(!done) {
         cout << "\nEnter command: " << endl;
@@ -102,12 +105,31 @@ int main(int argc, char* argv[])
                 done = true;
             }
 	    /* Add support for other commands here */
-            // else if ( cmd == "ADD" ) {
+            else if ( cmd == "ADD" ) {
+                string username;
+                int hitIdx;
+                ss >> username >> hitIdx;
+                if (carts.find(convToLower(username)) != carts.end()){
+                    carts[username].push_back(hits[hitIdx]);
+                }
+                // else if (there is a user with an empty cart){
 
-            // }
-            // else if ( cmd == "VIEWCART" ) {
+                // }
+                else {
+                    cout << "Invalid request" << endl;
+                }
 
-            // }            
+            }
+            else if ( cmd == "VIEWCART" ) {
+                string username;
+                ss >> username;
+                if (carts.find(convToLower(username)) != carts.end()){
+                    displayCart(carts[username]);
+                }
+                else{
+                    cout << "Invalid username" << endl;
+                }
+            }            
             // else if ( cmd == "BUYCART" ) {
 
             // }
@@ -115,7 +137,6 @@ int main(int argc, char* argv[])
                 cout << "Unknown command" << endl;
             }
         }
-
     }
     return 0;
 }
@@ -130,6 +151,22 @@ void displayProducts(vector<Product*>& hits)
     std::sort(hits.begin(), hits.end(), ProdNameSorter());
     for(vector<Product*>::iterator it = hits.begin(); it != hits.end(); ++it) {
         cout << "Hit " << setw(3) << resultNo << endl;
+        cout << (*it)->displayString() << endl;
+        cout << endl;
+        resultNo++;
+    }
+}
+
+void displayCart(vector<Product*>& cart)
+{
+    int resultNo = 1;
+    if (cart.begin() == cart.end()) {
+    	cout << "No results found!" << endl;
+    	return;
+    }
+    std::sort(cart.begin(), cart.end(), ProdNameSorter());
+    for(vector<Product*>::iterator it = cart.begin(); it != cart.end(); ++it) {
+        cout << "Item " << setw(3) << resultNo << endl;
         cout << (*it)->displayString() << endl;
         cout << endl;
         resultNo++;
